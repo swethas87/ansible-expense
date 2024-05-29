@@ -28,7 +28,7 @@
     - name: check DB connection
       community.mysql.mysql_info:
         login_user: root
-        login_password: "{{mysql_root_pasword}}"
+        login_password: "{{mysqlroot_pasword}}"
         login_host: "{{ login_host }}"
         filter: version
       ignore_errors: yes
@@ -39,5 +39,5 @@
         msg: "output is {{mysql_connection_output}}"
 
     - name: setup root password
-      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{mysql_root_password}}"
+      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{mysqlroot_password}}"
       when: mysql_connection_output.failed is True
