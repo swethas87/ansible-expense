@@ -1,11 +1,7 @@
 - name: configure backend server
   hosts: app
   become: yes
-  vars:
-    login_host: app.niksantechnologies.com
-  vars_prompt:
-    - name: mysqlroot_password
-      private: no
+
   tasks: #
     - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
@@ -15,7 +11,7 @@
 
     - name: install nodejs
       ansible.builtin.dnf:
-        name: dnf
+        name: nodejs
         state: installed
 
     - name: add user expense
