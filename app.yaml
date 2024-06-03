@@ -3,8 +3,10 @@
   become: yes
   vars:
     login_host: db.niksantechnologies.com
-    login_password: ExpenseApp@1
-
+    login_password: mysqlroot_password
+  vars_prompt:
+    - name: mysqlroot_password
+      private: no
   tasks: #
     - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
@@ -51,7 +53,7 @@
         name:
           - PyMySQL
           - cryptography
-        executable: pip3.9 #pip3.11 if pythong version is 3.11
+        executable: pip3.9 #pip3.11 if python version is 3.11
 
     - name: import data into mysql
       community.mysql.mysql_db:
